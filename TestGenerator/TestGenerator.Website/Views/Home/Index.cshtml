@@ -11,7 +11,7 @@
             @Html.TextBoxFor(m => m.TypeOfClassToTest, new { placeholder = "Type" })
             @Html.TextBoxFor(m => m.ClassToTest, new { placeholder = "Instance Name" })
         </div>
-        <button type="submit">Generate</button>
+        <button id="generate" type="submit">Generate</button>
     </div>
     <div class="col-md-6">
         <div class="input">
@@ -26,4 +26,6 @@
 <div id="parameterTemplate" class="parameter hidden">
     <input type="text" placeholder="Type" />
     <input type="text" placeholder="Instance Name" />
+</div>
+<div id="output" class="container hidden">
 </div>

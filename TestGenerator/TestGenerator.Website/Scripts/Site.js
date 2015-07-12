@@ -11,7 +11,17 @@ function removeParameter()
     $(parameterContainer).children().last().remove();
 }
 
+function generateTests()
+{
+    $.post("/TestGen/GetNullParamTests",
+       null,
+       function (response) {
+           alert(response);
+       });
+}
+
 $(document).ready(function () {
     $(addParam).click(addParameter);
     $(removeParam).click(removeParameter);
+    $(generate).click(generateTests);
 });
