@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TestGenerator.Website.Models;
 
 namespace TestGenerator.Website.Controllers
 {
@@ -10,9 +11,16 @@ namespace TestGenerator.Website.Controllers
     {
         //
         // GET: /Home/
+        [HttpGet]
         public ActionResult Index()
         {
             return this.View();
+        }
+
+        [HttpPost]
+        public string GetNullParamTests(HomeModel model)
+        {
+            return string.Empty;
         }
 	}
 }

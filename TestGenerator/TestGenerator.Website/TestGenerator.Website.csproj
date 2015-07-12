@@ -99,6 +99,8 @@
     </Compile>
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TestConstants.cs" />
+    <Compile Include="Services\TestGeneratorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
