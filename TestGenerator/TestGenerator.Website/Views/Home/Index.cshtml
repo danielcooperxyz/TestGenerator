@@ -1,0 +1,29 @@
+﻿@model TestGenerator.Website.Models.HomeModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="container inputs">
+    <div class="col-md-6">
+        <div class="input">
+            <h4>Class To Test</h4>
+            @Html.TextBoxFor(m => m.TypeOfClassToTest, new { placeholder = "Type" })
+            @Html.TextBoxFor(m => m.ClassToTest, new { placeholder = "Instance Name" })
+        </div>
+        <button type="submit">Generate</button>
+    </div>
+    <div class="col-md-6">
+        <div class="input">
+            <h4>Parameters</h4>
+            <button id="addParam">+</button>
+            <button id="removeParam">-</button>
+            <div id="parameterContainer">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="parameterTemplate" class="parameter hidden">
+    <input type="text" placeholder="Type" />
+    <input type="text" placeholder="Instance Name" />
+</div>
