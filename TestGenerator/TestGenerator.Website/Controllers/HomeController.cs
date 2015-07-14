@@ -18,9 +18,9 @@ namespace TestGenerator.Website.Controllers
         }
 
         [HttpPost]
-        public string GetNullParamTests()
+        public string GetNullParamTests(HomeModel model)
         {
-            return HttpUtility.HtmlEncode("\\\\\\ <summary>" + Environment.NewLine + "public class MyClass() { Console.WriteLine(\"Hello World\"); } ");
+            return string.Empty;
         }
 	}
 }

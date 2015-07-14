@@ -24,8 +24,8 @@
                     foreach (var item in Model.ClassParameters)
                     { 
                         <div class="parameter">
-                            <input type="text" placeholder="Type" value="@item.Key" />
-                            <input type="text" placeholder="Instance Name" value="@item.Value" />
+                            <input class="type" type="text" placeholder="Type" value="@item.Key" />
+                            <input class="instance" type="text" placeholder="Instance Name" value="@item.Value" />
                         </div>
                     } 
                 }
@@ -34,10 +34,8 @@
     </div>
 </div>
 <div id="parameterTemplate" class="parameter hidden">
-    <input type="text" placeholder="Type" />
-    <input type="text" placeholder="Instance Name" />
+    <input class="type" type="text" placeholder="Type" />
+    <input class="instance" type="text" placeholder="Instance Name" />
 </div>
 <div id="output" class="container">
-    <pre><code class="language-csharp line-numbers">/* &lt;summary&gt;*/
-public class MyClass() { Console.WriteLine("Hello World"); } </code></pre>
 </div>
