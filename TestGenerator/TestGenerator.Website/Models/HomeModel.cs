@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,6 @@ namespace TestGenerator.Website.Models
 
         public string ClassToTest { get; set; }
 
-        public IList<string> ClassParameters { get; set; }
+        public IDictionary<string, string> ClassParameters { get; set; }
     }
 }

@@ -13,10 +13,11 @@ function removeParameter()
 
 function generateTests()
 {
-    $.post("/TestGen/GetNullParamTests",
+    $.post("/TestGen/Home/GetNullParamTests",
        null,
        function (response) {
-           alert(response);
+           $(output).html('<code class="language-csharp line-numbers">' + response + '</code>');
+           Prism.highlightAll();
        });
 }
 

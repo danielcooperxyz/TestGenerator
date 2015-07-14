@@ -19,6 +19,16 @@
             <button id="addParam">+</button>
             <button id="removeParam">-</button>
             <div id="parameterContainer">
+                @if (Model.ClassParameters != null && Model.ClassParameters.Count > 0)
+                {
+                    foreach (var item in Model.ClassParameters)
+                    { 
+                        <div class="parameter">
+                            <input type="text" placeholder="Type" value="@item.Key" />
+                            <input type="text" placeholder="Instance Name" value="@item.Value" />
+                        </div>
+                    } 
+                }
             </div>
         </div>
     </div>
@@ -27,5 +37,7 @@
     <input type="text" placeholder="Type" />
     <input type="text" placeholder="Instance Name" />
 </div>
-<div id="output" class="container hidden">
+<div id="output" class="container">
+    <pre><code class="language-csharp line-numbers">/* &lt;summary&gt;*/
+public class MyClass() { Console.WriteLine("Hello World"); } </code></pre>
 </div>

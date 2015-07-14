@@ -14,13 +14,13 @@ namespace TestGenerator.Website.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return this.View();
+            return this.View(new HomeModel());
         }
 
         [HttpPost]
         public string GetNullParamTests()
         {
-            return "Console.WriteLine(\"Hello World\")";
+            return HttpUtility.HtmlEncode("\\\\\\ <summary>" + Environment.NewLine + "public class MyClass() { Console.WriteLine(\"Hello World\"); } ");
         }
 	}
 }
