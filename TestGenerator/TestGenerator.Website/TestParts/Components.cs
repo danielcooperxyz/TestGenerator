@@ -5,15 +5,22 @@ using System.Web;
 
 namespace TestGenerator.Website.TestParts
 {
-    public static class TestConstants
+    public static class Components
     {
         /* FILE SUMMARY */
         public const string Indentation = "    ";
 
         public const string SummaryStart = "/// <summary>";
 
+        public const string SummaryMid = "/// ";
+
         public const string SummaryEnd = "/// </summary>";
 
+        public const string TestAttr = "[Test]";
+
+        public const string SetupAttr = "[SetUp]";
+
+        /* FILE PARTS */
         public static readonly string OpenNamespace = string.Format(
             "namespace {0}{{{0}",
             Environment.NewLine);
@@ -44,5 +51,29 @@ namespace TestGenerator.Website.TestParts
             "{0}}}{1}",
             Indentation,
             Environment.NewLine);
+
+        public static string GetIndents(int number)
+        {
+            var indents = "";
+
+            for (int i = 0; i < number; i++)
+            {
+                indents += Indentation;
+            }
+
+            return indents;
+        }
+
+        public static string CreateSummary(string summaryText)
+        {
+            return string.Format(
+                    "{0}{1}{2}{0}{3}{4}{2}{0}{5}{2}",
+                    Components.GetIndents(2),
+                    Components.SummaryStart,
+                    Environment.NewLine,
+                    Components.SummaryMid,
+                    summaryText,
+                    Components.SummaryEnd);
+        }
     }
 }
