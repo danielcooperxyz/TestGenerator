@@ -56,7 +56,7 @@ namespace TestGenerator.Website.Services
             return string.Concat(Components.CloseClass + Components.CloseNamespace);
         }
 
-        public string CreateNullParamTest(string paramType, string parameters)
+        public string CreateNullParamTest(string paramType, string parameter)
         {
             var testStart = string.Concat(NullParameter.Summary, NullParameter.TestDeclarationStart);
 
@@ -66,9 +66,16 @@ namespace TestGenerator.Website.Services
                 paramType,
                 NullParameter.TestDeclarationEnd);
 
+            var inner = string.Format(
+                "{0}this.{1} = null;{2}Assert.Throws<ArgumentNullException>(() => { this.GetInstance(); });{2}}}",
+                Components.GetIndents(3),
+                parameter,
+                Environment.NewLine);
 
-
-            return testDec;
+            return string.Format(
+                "{0}{1}",
+                testDec,
+                inner);
         }
 
         public string CreateSetup(IDictionary<string,string> parameters)
@@ -116,23 +123,26 @@ namespace TestGenerator.Website.Services
             foreach (var p in parameterNames)
             {
                 parametersToUse += string.Format(
-                    "this.{0},{1}",
+                    "{0}this.{1},{2}",
+                    Components.GetIndents(4),
                     p,
                     Environment.NewLine);
             }
 
             var inner = string.Format(
-                "return new {0}({1}{2});",
+                "{0}return new {1}({2}{3});",
+                Components.GetIndents(3),
                 typeToTest,
                 Environment.NewLine,
                 parametersToUse);
 
             return string.Format(
-                "{0}{1}{2}{3}}}{3}",
+                "{0}{1}{2}{3}{4}}}{3}",
                 summary,
                 methodDec,
                 inner,
-                Environment.NewLine);
+                Environment.NewLine,
+                Components.GetIndents(2));
         }
     }
 }

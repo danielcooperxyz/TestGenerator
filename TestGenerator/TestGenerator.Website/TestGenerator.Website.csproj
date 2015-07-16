@@ -103,7 +103,7 @@
     </Compile>
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestParts\TestConstants.cs" />
+    <Compile Include="TestParts\Components.cs" />
     <Compile Include="Services\TestGeneratorService.cs" />
     <Compile Include="TestParts\NullParameter.cs" />
   </ItemGroup>
