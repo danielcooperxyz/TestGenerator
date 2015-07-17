@@ -22,13 +22,13 @@ namespace TestGenerator.Website.TestParts
             Components.GetIndents(2));
 
         public static readonly string TestStart = string.Format(
-            "{0}Assert.Throws<ArgumentNullException>(() => { this.",
+            "{0}Assert.Throws<ArgumentNullException>(() => {{ this.",
             Components.GetIndents(3));
 
         public static readonly string TestMiddle = " = new ";
 
         public static readonly string TestEnd = string.Format(
-            "); });{0}{1}}}{0}{0}",
+            "); }});{0}{1}}}{0}{0}",
             Environment.NewLine,
             Components.GetIndents(2));
     }

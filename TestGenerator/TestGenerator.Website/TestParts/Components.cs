@@ -28,7 +28,7 @@ namespace TestGenerator.Website.TestParts
         public static readonly string CloseNamespace = "}";
 
         public static readonly string UsingString = "{0}using System;{1}{0}using System.Collections.Generic;{1}{0}using System.Diagnostics.CodeAnalysis;{1}{0}using System.Linq;{1}" +
-            "{0}using System.Text;{1}{0}using System.Threading.Tasks{1}{0}using Moq;{1}{0}using NUnit.Framework;{1}{1}";
+            "{0}using System.Text;{1}{0}using System.Threading.Tasks;{1}{0}using Moq;{1}{0}using NUnit.Framework;{1}{1}";
         
         public static readonly string Usings = string.Format(
             UsingString,
@@ -43,9 +43,8 @@ namespace TestGenerator.Website.TestParts
             SummaryEnd);
 
         public static readonly string ClassDefinition = string.Format(
-            "{0}public class {1}{0}{{{1}", 
-            Indentation,
-            Environment.NewLine);
+            "{0}public class ", 
+            Indentation);
 
         public static readonly string CloseClass = string.Format(
             "{0}}}{1}",

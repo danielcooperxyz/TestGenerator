@@ -17,7 +17,7 @@ namespace TestGenerator.Website.Services
                 Components.ClassDefinition);
 
             return string.Format(
-                "{0}{1}{2}{3}{{{2}",
+                "{0}{1}Test{2}{3}{{{2}",
                 fileTop,
                 typeOfClassToTest,
                 Environment.NewLine,
@@ -56,28 +56,6 @@ namespace TestGenerator.Website.Services
             return string.Concat(Components.CloseClass + Components.CloseNamespace);
         }
 
-        public string CreateNullParamTest(string paramType, string parameter)
-        {
-            var testStart = string.Concat(NullParameter.Summary, NullParameter.TestDeclarationStart);
-
-            var testDec = string.Format(
-                "{0}{1}{2}",
-                testStart,
-                paramType,
-                NullParameter.TestDeclarationEnd);
-
-            var inner = string.Format(
-                "{0}this.{1} = null;{2}Assert.Throws<ArgumentNullException>(() => { this.GetInstance(); });{2}}}",
-                Components.GetIndents(3),
-                parameter,
-                Environment.NewLine);
-
-            return string.Format(
-                "{0}{1}",
-                testDec,
-                inner);
-        }
-
         public string CreateSetup(IDictionary<string,string> parameters)
         {
             var summary = Components.CreateSummary("Setup objects for use during tests.");
@@ -101,14 +79,15 @@ namespace TestGenerator.Website.Services
             }
 
             return string.Format(
-            "{0}{1}{2}{3}}}{3}",
+            "{0}{1}{2}{3}}}{4}",
             summary,
             methodDec,
             inits,
+            Components.GetIndents(2),
             Environment.NewLine);
         }
 
-        public string CreateGetInstance(string typeToTest, ICollection<string> parameterNames)
+        public string CreateGetInstance(string typeToTest, IList<string> parameterNames)
         {
             var summary = Components.CreateSummary("Create an instance to test.");
 
@@ -120,15 +99,21 @@ namespace TestGenerator.Website.Services
 
             var parametersToUse = "";
 
-            foreach (var p in parameterNames)
+            for (int i = 0; i < parameterNames.Count; i++)
             {
-                parametersToUse += string.Format(
-                    "{0}this.{1},{2}",
+                var param = string.Format(
+                    "{0}this.{1}",
                     Components.GetIndents(4),
-                    p,
-                    Environment.NewLine);
-            }
+                    parameterNames[i]);
 
+                if (i < parameterNames.Count - 1)
+                {
+                    param = string.Concat(param, ",", Environment.NewLine);
+                }
+
+                parametersToUse += param;
+            }
+            
             var inner = string.Format(
                 "{0}return new {1}({2}{3});",
                 Components.GetIndents(3),
@@ -142,6 +127,41 @@ namespace TestGenerator.Website.Services
                 methodDec,
                 inner,
                 Environment.NewLine,
+                Components.GetIndents(2));
+        }
+
+        public string CreateNullParamTests(IDictionary<string, string> parameters)
+        {
+            var tests = "";
+
+            foreach (var kp in parameters)
+            {
+                tests += string.Concat(CreateNullParamTest(kp), Environment.NewLine, Environment.NewLine);
+            }
+
+            return tests;
+        }
+
+        private string CreateNullParamTest(KeyValuePair<string, string> parameter)
+        {
+            var testStart = string.Concat(NullParameter.Summary, NullParameter.TestDeclarationStart);
+
+            var testDec = string.Format(
+                "{0}{1}{2}",
+                testStart,
+                parameter.Key,
+                NullParameter.TestDeclarationEnd);
+
+            var inner = string.Format(
+                "{0}this.{1} = null;{2}{0}Assert.Throws<ArgumentNullException>(() => {{ this.GetInstance(); }});{2}",
+                Components.GetIndents(3),
+                parameter.Value,
+                Environment.NewLine);
+
+            return string.Format(
+                "{0}{1}{2}}}",
+                testDec,
+                inner,
                 Components.GetIndents(2));
         }
     }

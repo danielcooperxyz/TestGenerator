@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TestGenerator.Website.Models;
+using TestGenerator.Website.Services;
 
 namespace TestGenerator.Website.Controllers
 {
@@ -18,9 +19,21 @@ namespace TestGenerator.Website.Controllers
         }
 
         [HttpPost]
-        public string GetNullParamTests(HomeModel model)
+        public string GetTestFile(HomeModel model)
         {
-            return string.Empty;
+            TestGeneratorService testGenService = new TestGeneratorService();
+
+            var file = testGenService.CreateTestFileStart(model.TypeOfClassToTest);
+
+            file += testGenService.CreateSetup(model.ClassParameters);
+
+            file += testGenService.CreateNullParamTests(model.ClassParameters);
+
+            file += testGenService.CreateGetInstance(model.TypeOfClassToTest, model.ClassParameters.Values.ToList());
+
+            file += testGenService.CreateTestFileEnd();
+
+            return HttpUtility.HtmlEncode(file);
         }
 	}
 }
