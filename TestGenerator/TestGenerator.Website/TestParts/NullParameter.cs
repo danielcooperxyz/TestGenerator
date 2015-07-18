@@ -9,7 +9,8 @@ namespace TestGenerator.Website.TestParts
     {
         /* METHOD SUMMARY */
         public static readonly string Summary = Components.CreateSummary(
-            "Test that the constructor throws an exception when passed a null parameter");
+            "Test that the constructor throws an exception when passed a null parameter",
+            2);
 
         public static readonly string TestDeclarationStart = string.Format(
             "{0}[Test]{1}{0}public void Constructor_Null",

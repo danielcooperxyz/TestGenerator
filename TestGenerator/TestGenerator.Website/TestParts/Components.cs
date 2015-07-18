@@ -35,16 +35,10 @@ namespace TestGenerator.Website.TestParts
             Indentation,
             Environment.NewLine);
 
-        public static readonly string ClassSummary = string.Format(
-            "{0}{1}{2}{0}/// Tests for the{2}{0}{3}{2}{0}[ExcludeFromCodeCoverage]{2}",
-            Indentation,
-            SummaryStart,
-            Environment.NewLine,
-            SummaryEnd);
-
         public static readonly string ClassDefinition = string.Format(
-            "{0}public class ", 
-            Indentation);
+            "{0}[ExcludeFromCodeCoverage]{1}{0}public class ", 
+            Indentation,
+            Environment.NewLine);
 
         public static readonly string CloseClass = string.Format(
             "{0}}}{1}",
@@ -63,11 +57,11 @@ namespace TestGenerator.Website.TestParts
             return indents;
         }
 
-        public static string CreateSummary(string summaryText)
+        public static string CreateSummary(string summaryText, int numberOfIndents)
         {
             return string.Format(
                     "{0}{1}{2}{0}{3}{4}{2}{0}{5}{2}",
-                    Components.GetIndents(2),
+                    Components.GetIndents(numberOfIndents),
                     Components.SummaryStart,
                     Environment.NewLine,
                     Components.SummaryMid,

@@ -25,6 +25,8 @@ namespace TestGenerator.Website.Controllers
 
             var file = testGenService.CreateTestFileStart(model.TypeOfClassToTest);
 
+            file += testGenService.CreateParameters(model.ClassParameters);
+
             file += testGenService.CreateSetup(model.ClassParameters);
 
             file += testGenService.CreateNullParamTests(model.ClassParameters);

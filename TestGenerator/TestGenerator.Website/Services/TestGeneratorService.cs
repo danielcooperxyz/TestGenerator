@@ -10,10 +10,13 @@ namespace TestGenerator.Website.Services
     {
         public string CreateTestFileStart(string typeOfClassToTest) 
         {
+            var summaryText = string.Format("Tests for the <see cref=\"{0}\"/> class.",
+                typeOfClassToTest);
+
             var fileTop = string.Concat(
                 Components.OpenNamespace,
                 Components.Usings,
-                Components.ClassSummary,
+                Components.CreateSummary(summaryText, 1),
                 Components.ClassDefinition);
 
             return string.Format(
@@ -36,16 +39,16 @@ namespace TestGenerator.Website.Services
 
 
                 var definition = string.Format(
-                    "{0}private readonly {1} {2};",
+                    "{0}private {1} {2};",
                     Components.GetIndents(2),
                     kp.Key,
                     kp.Value);
 
                 parameterDefinitions += string.Format(
-                    "{0}{1}{2}{1}{1}",
-                    Components.CreateSummary(summaryText),
-                    Environment.NewLine,
-                    definition);
+                    "{0}{1}{2}{2}",
+                    Components.CreateSummary(summaryText, 2),
+                    definition,
+                    Environment.NewLine);
             }
 
             return parameterDefinitions;
@@ -58,7 +61,7 @@ namespace TestGenerator.Website.Services
 
         public string CreateSetup(IDictionary<string,string> parameters)
         {
-            var summary = Components.CreateSummary("Setup objects for use during tests.");
+            var summary = Components.CreateSummary("Setup objects for use during tests.", 2);
 
             var methodDec = string.Format(
                 "{0}{1}{2}{0}public void Setup(){2}{0}{{{2}",
@@ -79,7 +82,7 @@ namespace TestGenerator.Website.Services
             }
 
             return string.Format(
-            "{0}{1}{2}{3}}}{4}",
+            "{0}{1}{2}{3}}}{4}{4}",
             summary,
             methodDec,
             inits,
@@ -89,7 +92,7 @@ namespace TestGenerator.Website.Services
 
         public string CreateGetInstance(string typeToTest, IList<string> parameterNames)
         {
-            var summary = Components.CreateSummary("Create an instance to test.");
+            var summary = Components.CreateSummary("Create an instance to test.", 2);
 
             var methodDec = string.Format(
                 "{0}private {1} GetInstance(){2}{0}{{{2}",
