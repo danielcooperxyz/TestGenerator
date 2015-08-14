@@ -9,15 +9,12 @@ namespace TestGenerator.Website.TestParts
     {
         /* FILE SUMMARY */
         public const string Indentation = "    ";
-
         public const string SummaryStart = "/// <summary>";
-
         public const string SummaryMid = "/// ";
-
         public const string SummaryEnd = "/// </summary>";
-
+        public const string ReturnsOpen = "/// <returns>";
+        public const string ReturnsClose = "</returns>";
         public const string TestAttr = "[Test]";
-
         public const string SetupAttr = "[SetUp]";
 
         /* FILE PARTS */
@@ -57,9 +54,9 @@ namespace TestGenerator.Website.TestParts
             return indents;
         }
 
-        public static string CreateSummary(string summaryText, int numberOfIndents)
+        public static string CreateSummary(string summaryText, int numberOfIndents, string returns = null)
         {
-            return string.Format(
+            var summary = string.Format(
                     "{0}{1}{2}{0}{3}{4}{2}{0}{5}{2}",
                     Components.GetIndents(numberOfIndents),
                     Components.SummaryStart,
@@ -67,6 +64,23 @@ namespace TestGenerator.Website.TestParts
                     Components.SummaryMid,
                     summaryText,
                     Components.SummaryEnd);
+
+            if (!string.IsNullOrEmpty(returns))
+            {
+                summary = string.Format("{0}{1}", summary, CreateReturns(returns, numberOfIndents));
+            }
+
+            return summary;
+        }
+
+        private static string CreateReturns(string returnsText, int numberOfIndents)
+        {
+            return string.Format("{0}{1}{2}{3}{4}",
+                Components.GetIndents(numberOfIndents),
+                ReturnsOpen,
+                returnsText,
+                ReturnsClose,
+                Environment.NewLine);
         }
     }
 }

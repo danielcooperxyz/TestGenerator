@@ -92,7 +92,10 @@ namespace TestGenerator.Website.Services
 
         public string CreateGetInstance(string typeToTest, IList<string> parameterNames)
         {
-            var summary = Components.CreateSummary("Create an instance to test.", 2);
+            var summary = Components.CreateSummary(
+                "Create an instance to test.", 
+                2,
+                "The initialised test object.");
 
             var methodDec = string.Format(
                 "{0}private {1} GetInstance(){2}{0}{{{2}",
