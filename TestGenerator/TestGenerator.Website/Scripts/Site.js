@@ -33,7 +33,7 @@ function generateTests() {
             'ClassParameters': parameters
         };
 
-    $.post("/TestGen/Home/GetTestFile",
+    $.post($('#test-gen-url').val(),
         model,
         function (response) {
             $('#output').html('<pre><code class="language-csharp line-numbers">'

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@Html.Hidden("TestGenUrl", Url.Action("GetTestFile"), new { @id = "test-gen-url" })
 <h2>C# Test File Generator</h2>
 <div class="container inputs">
     <div class="col-md-6">
