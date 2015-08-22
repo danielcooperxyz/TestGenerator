@@ -10,7 +10,7 @@ function removeParameter() {
 }
 
 function getParams() {
-    var params = {},
+    var params,
         i,
         key,
         param,
