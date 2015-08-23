@@ -19,6 +19,9 @@ function getParams() {
     for (i = 0; i < paramInputs.length; i++) {
         param = $(paramInputs[i]);
         key = param.children('.type').val().toString();
+        if (!params) {
+            params = {};
+        }
         params[key] = param.children('.instance').val();
     }
 
