@@ -4,9 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Test Generator</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/prism.css" rel="stylesheet" type="text/css" />
+    <link href="~/bundles/styles" rel="stylesheet" type="text/css" />
     <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -31,12 +29,11 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Test Generator</p>
+            <p class="Left">&copy; @DateTime.Now.Year - Test Generator</p>
+            <p class="Right">Written by <a href="http://www.danielcooper.xyz">Daniel Cooper</a></p>
         </footer>
     </div>
     
-    <script src="~/Scripts/prism.js" type="text/javascript"></script>
-    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
-    <script src="~/Scripts/Site.js"></script>
+    <script src="~/bundles/scripts" type="text/javascript"></script>
 </body>
 </html>

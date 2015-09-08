@@ -50,3 +50,15 @@ input[type="checkbox"].input-validation-error {
 .parameter {
     margin: 10px auto;
 }
+
+#output {
+    max-width: 1110px;
+}
+
+.Left {
+    float: left;
+}
+
+.Right {
+    float: right;
+}
